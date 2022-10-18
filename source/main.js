@@ -1,26 +1,17 @@
 var app = angular.module('app', []);
 
-app.controller('mainCtrl', function ($scope) {
-    $scope.posts = [
-        {
-            name: "This is post about cats",
-        },
-        {
-            name: "This is post about dogs"
-        }
-    ];
-
-    $scope.getPosts = function(){
-        return $scope.posts;
-    }
+app.controller('booksCtrl', function ($scope) {
+    $scope.name = 'Harry',
+    console.log('scope from ctrl', $scope);
 });
 
-app.directive('post', function () {
+app.directive('book', function () {
     return {
-        scope: false,
-        template: "<div ng-repeat='post in getPosts()'>{{post.name}}</div>",
+        scope: true,
+        template: "<div>My name is {{name}} <input type='text' ng-model='name'></div>",
         link: function (scope, element, attrs) {
-            console.log('scope', scope);
+            console.log('scope from directive', scope);
+            console.log(scope.name);
         }
     };
 });
