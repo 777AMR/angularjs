@@ -9,9 +9,20 @@
 </head>
 
 <body>
-    <div ng-controller="mainCtrl">
-        <foo-bar>This is {{name}}</foo-bar>
-    </div>
+    <foo-bar></foo-bar>
+
+    <script type="text/ng-template" id='bookmarks.html'>
+        <div>Hello from TemplateUrl</div>
+            <div ng-repeat="bookmark in bookmarks">
+                {{bookmark.name}}
+            </div>
+            <div ng-repeat="bookmark in bookmarks">
+                {{bookmark.name}}
+            </div>
+            <div ng-repeat="bookmark in bookmarks">
+                {{bookmark.name}}
+            </div>
+    </script>
 </body>
 
 </html>
