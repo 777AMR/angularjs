@@ -1,19 +1,19 @@
 var app = angular.module('app', []);
 
-app.controller('myBooksCtrl', function ($scope) {
-    $scope.showBook = function () {
-        console.log('This is some book');
+app.controller('mainCtrl', function ($scope) {
+    this.myLesson = "MainLesson";
+
+    this.addLesson = function(){
+        console.log('Add lesson');
     }
+
+    $scope.mainCtrl = this;
 });
 
-app.controller('angularBookCtrl', function ($scope) {
-    $scope.showBook = function () {
-        console.log('This is AngularJS book');
-    }
+app.controller('firstCtrl', function () {
+    this.myLesson = "FirstLesson";
 });
 
-app.controller('emberBookCtrl', function ($scope) {
-    $scope.showBook = function () {
-        console.log('This is Ember book');
-    }
+app.controller('secondCtrl', function () {
+    this.myLesson = "SecondLesson";
 });

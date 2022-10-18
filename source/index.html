@@ -9,14 +9,13 @@
 </head>
 
 <body>
-    <div ng-controller='myBooksCtrl'>
-        <div ng-controller='angularBookCtrl'>
-            <button ng-click='showBook()'>Show AngularBook</button>
+    <div ng-controller="mainCtrl">
+        <div ng-controller="firstCtrl as firstCtrl">
+            <div ng-controller="secondCtrl as secondCtrl">
+                {{mainCtrl.myLesson}}
+                <button ng-click = "mainCtrl.addLesson()">Add Lesson</button>
+            </div>
         </div>
-        <div ng-controller='emberBookCtrl'>
-            <button ng-click='showBook()'>Show EmberBook</button>
-        </div>
-    </div>
 </body>
 
 </html>
