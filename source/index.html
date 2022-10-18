@@ -9,9 +9,12 @@
 </head>
 
 <body>
-    <div ng-controller="booksCtrl">
-        This is ctrl name: {{name}}
-        <book></book>
+    <div ng-controller="firstCtrl">
+        <div>My ctrl name is {{name}}</div>
+        <div>My ctrl color is {{color}}</div>
+        <div><button ng-click='reverse()'>Reverse name</button></div>
+        ------------------------------------
+        <foo-bar name="{{name}}" color="color" reverse='reverse()'></foo-bar>
     </div>
 </body>
 

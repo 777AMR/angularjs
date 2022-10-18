@@ -1,17 +1,26 @@
 var app = angular.module('app', []);
 
-app.controller('booksCtrl', function ($scope) {
-    $scope.name = 'Harry',
-    console.log('scope from ctrl', $scope);
+app.controller('firstCtrl', function ($scope) {
+    $scope.name = 'Harry';
+    $scope.color = '#333333';
+
+    $scope.reverse = function () {
+        $scope.name = $scope.name.split('').reverse().join('');
+    }
 });
 
-app.directive('book', function () {
+app.directive('fooBar', function () {
     return {
-        scope: true,
-        template: "<div>My name is {{name}} <input type='text' ng-model='name'></div>",
-        link: function (scope, element, attrs) {
-            console.log('scope from directive', scope);
-            console.log(scope.name);
+        scope: {
+            name: '@',//только для чтения и нет двухстороннего биндинга
+            color: '=',//меняется и в контроллере и в директиве, есть двухсторонний биндинг
+            reverse: '&'//выполнить выражение из родительского контроллера
+        },
+        template: "<div>My name is {{name}} <input type='text' ng-model='name'></div>" +
+            "<div>My color is {{color}} <input type='text' ng-model='color'></div>" +
+            "<button ng-click='reverse()'>Reverse</button>",
+        link: function ($scope, element, attrs) {
+            console.log('fooBar');
         }
-    };
+    }
 });
