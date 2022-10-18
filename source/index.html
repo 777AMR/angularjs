@@ -9,13 +9,25 @@
 </head>
 
 <body>
-    <div ng-controller="firstCtrl">
-        <div>My ctrl name is {{name}}</div>
-        <div>My ctrl color is {{color}}</div>
-        <div><button ng-click='reverse()'>Reverse name</button></div>
-        ------------------------------------
-        <foo-bar name="{{name}}" color="color" reverse='reverse()'></foo-bar>
-    </div>
-</body>
+    My form here
+    <form wrap-in="table">
+        <div>
+            <label>Email:</label>
+            <input type='text' placeholder='Place your Email'>
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type='password' placeholder='Enter your Password'>
+        </div>
+        <button>Submit</button>
+    </form>
 
+    <script type="text/ng-template" id='red'>
+        <div class='red'></div>
+    </script>
+
+    <script type="text/ng-template" id="table">
+        <div>Header for table</div>
+      </script>
+</body>
 </html>

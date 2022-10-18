@@ -1,26 +1,15 @@
 var app = angular.module('app', []);
 
-app.controller('firstCtrl', function ($scope) {
-    $scope.name = 'Harry';
-    $scope.color = '#333333';
-
-    $scope.reverse = function () {
-        $scope.name = $scope.name.split('').reverse().join('');
-    }
-});
-
-app.directive('fooBar', function () {
+app.directive('wrapIn', function ($templateCache) {
     return {
-        scope: {
-            name: '@',//только для чтения и нет двухстороннего биндинга
-            color: '=',//меняется и в контроллере и в директиве, есть двухсторонний биндинг
-            reverse: '&'//выполнить выражение из родительского контроллера
-        },
-        template: "<div>My name is {{name}} <input type='text' ng-model='name'></div>" +
-            "<div>My color is {{color}} <input type='text' ng-model='color'></div>" +
-            "<button ng-click='reverse()'>Reverse</button>",
-        link: function ($scope, element, attrs) {
-            console.log('fooBar');
+        transclude: 'element',
+        link: function (scope, element, attrs, ctrl, transclude) {
+            var template = $templateCache.get(attrs.wrapIn);
+            var templateElement = angular.element(template);
+
+            transclude(scope, function (clone) {
+                element.after(templateElement.append(clone));
+            })
         }
-    }
+    };
 });
