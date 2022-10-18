@@ -9,12 +9,11 @@
 </head>
 
 <body>
-    <div foo>foo</div>
-    <div foo>foo</div>
-    <div foo>foo</div>
-    <div foo>foo</div>
-    <div foo>foo</div>
-    <div foo>foo</div>
+    <div ng-controller='mainCtrl'>
+        {{money1 | moneyFilter}}
+        {{money2 | moneyFilter}}
+        {{money3 | moneyFilter}}
+    </div>
 </body>
 
 </html>
