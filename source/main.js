@@ -19,6 +19,22 @@ app.config(function ($routeProvider) {
         })
 });
 
+app.run(function ($rootScope) {
+    console.log('run');
+    $rootScope.$on('$routeChangeStart', function (event, current, previous, reject) {
+        console.log('changestart', arguments);
+    });
+
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous, reject) {
+        console.log('changesuccess', arguments);
+        $rootScope.currentPath = current.$$route.originalPath;
+    });
+});
+
+app.controller('pathCtrl', function () {
+
+});
+
 app.controller('homeCtrl', function ($scope) {
     console.log('homeCtrl');
     $scope.model = {
