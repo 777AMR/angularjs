@@ -1,15 +1,27 @@
 var app = angular.module('app', []);
 
-app.directive('wrapIn', function ($templateCache) {
-    return {
-        transclude: 'element',
-        link: function (scope, element, attrs, ctrl, transclude) {
-            var template = $templateCache.get(attrs.wrapIn);
-            var templateElement = angular.element(template);
+app.controller('mainCtrl', function ($http, $scope) {
+    $http.get('http://localhost:3001/books')
+        .success(function (result) {
+            console.log('success', result);
+            $scope.books = result;
+        })
+        .error(function (result) {
+            console.log('error');
+        });
 
-            transclude(scope, function (clone) {
-                element.after(templateElement.append(clone));
+
+    $scope.addBook = function (book) {
+        console.log(book);
+        $http.post('http://localhost:3001/books', book)
+            .success(function (result) {
+                console.log('Book successfully saved to backend');
+                $scope.books.push(book);
+                $scope.book = null;
             })
-        }
+            .error(function () {
+                console.log('Error in book post');
+            })
     };
+
 });
